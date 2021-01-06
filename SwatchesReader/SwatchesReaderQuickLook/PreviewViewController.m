@@ -159,7 +159,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    os_log_t logger = os_log_create("com.fwkit.swatchesreader", "color");
+    os_log_t logger = os_log_create("com.fwkit.swatches", "color");
     os_log_with_type(logger, OS_LOG_TYPE_DEBUG, "select %@", @(indexPath.row) );
 }
 

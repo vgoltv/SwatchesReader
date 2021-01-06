@@ -43,7 +43,7 @@
 {
     if(self = [super init])
     {
-        _logger = os_log_create("com.fwkit.swatchesreader", "colors");
+        _logger = os_log_create("com.fwkit.swatches", "colors");
         
         _majorVersion = 0;
         _minorVersion = 0;
@@ -59,7 +59,7 @@
 {
     if(self = [super init])
     {
-        _logger = os_log_create("com.fwkit.swatchesreader", "colors");
+        _logger = os_log_create("com.fwkit.swatches", "colors");
         
         _majorVersion = majVersion;
         _minorVersion = minVersion;

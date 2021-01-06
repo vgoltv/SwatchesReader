@@ -43,7 +43,7 @@ public struct Swatch: Codable, Equatable {
         if r <= 0 && r >= 1 && g <= 0 && g >= 1 && b <= 0 && b >= 1
         {
             let error = UIColorInputError.unableToOutputHexStringForWideDisplayColor
-            Logger.viewCycle.error("\(error.localizedDescription)")
+            Logger.vlog.error("\(error.localizedDescription)")
             
             return String(format: "#%02X%02X%02X", 0,0,0)
         }

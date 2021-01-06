@@ -38,7 +38,7 @@
             
             NSURL *url = strongSelf.presentedItemURL;
             
-            os_log_t logger = os_log_create("com.fwkit.swatchesreader", "thumbs");
+            os_log_t logger = os_log_create("com.fwkit.swatches", "thumbs");
             
             if(!url || url.path.length==0)
             {

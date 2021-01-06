@@ -18,25 +18,33 @@ struct SwatchesContentView: View {
     
     @ObservedObject var userSettings = UserSettings()
     
+
+    
     @State var listLayout: [GridItem] = [ GridItem(.flexible()) ]
-    @State var gridLayout: [GridItem] = [ GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()) ]
+    @State var gridLayout: [GridItem] = Array(repeating: .init(.adaptive(minimum: 70)), count: 3)
     
     var body: some View {
+        
         VStack {
             
-            Logger.viewCycle.logDebugInView("display palette")
+            Logger.vlog.logDebugInView("display palette")
             
             
             Spacer()
             
             ScrollView {
                 let swatchesCollection: SwatchesCollection = document.collection()
-                
-                if (swatchesCollection.collectionName().count > 0) {
-                    Text( swatchesCollection.collectionName() )
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
+                let collectionName: String = swatchesCollection.collectionName()
+                if( collectionName.count > 0 ) {
+                    Group {
+                        Text( collectionName )
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .font(Font.system(.headline, design: .rounded).bold())
+                            .multilineTextAlignment(.center)
+                    }
+                    .padding()
                     Spacer()
+                    Divider().background(Color(.sRGB, red: 0.5, green: 0.5, blue: 0.5, opacity: 0.2)).frame(height: 0.5)
                 }
                 
                 let layout: [GridItem] = self.userSettings.squareGrid ? self.gridLayout : self.listLayout
@@ -49,7 +57,7 @@ struct SwatchesContentView: View {
 
                     ForEach(0..<swatches.count) { index in
                         let swatch: Swatch = swatches[index]
-                        SwatchesCell(title:swatch.baseColorName(), subtitle: swatch.baseColorString()+" | "+swatch.hexString(), color:swatch.baseColor(), gridLayout: self.userSettings.squareGrid)
+                        SwatchesCell(title:swatch.baseColorName(), subtitle: swatch.baseColorString(), hexStr:swatch.hexString(), descr:swatch.baseColorString(), color:swatch.baseColor(), gridLayout: self.userSettings.squareGrid )
                     }
                 }
                 .padding(.all, 10)
@@ -64,7 +72,8 @@ struct SwatchesContentView: View {
                                     Button(action: {
                                         self.userSettings.squareGrid.toggle()
                                     }) {
-                                        Image( systemName: self.userSettings.squareGrid ? "square.split.2x2.fill" : "list.dash" )
+                                        Image( systemName: self.userSettings.squareGrid ? "square.grid.2x2" : "list.dash" )
+                                            .frame(width: 48 , height: 48, alignment: .center)
                                     }
                                 }
         )
@@ -84,6 +93,8 @@ struct SwatchesContentView: View {
     private func bodyDisappeared() {
         
     }
+    
+
     
 }
 
@@ -117,7 +128,7 @@ class UserSettings: ObservableObject {
         let keyTypeGridStr: String = "square_grid"
         self.keyTypeGridName = keyTypeGridStr
         
-        let infoDictionaryKey = kCFBundleVersionKey as String
+        let infoDictionaryKey = "CFBundleShortVersionString"
         
         if let vers = Bundle.main.object(forInfoDictionaryKey: infoDictionaryKey) as? String {
             self.currentVersion = vers
@@ -125,11 +136,10 @@ class UserSettings: ObservableObject {
         }else{
             self.currentVersion = "1.0"
             self.showWelcomeScreen = false
-            Logger.viewCycle.error("Expected to find a bundle version in the info dictionary")
+            Logger.vlog.error("Expected to find a bundle version in the info dictionary")
         }
         
         self.squareGrid = UserDefaults.standard.object(forKey: keyBaseStr + keyTypeGridStr) as? Bool ?? true
-        
     }
     
     public static var appDisplayName: String {

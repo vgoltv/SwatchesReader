@@ -14,11 +14,15 @@ import os.log
 extension Logger {
     private static var subsystem = Bundle.main.bundleIdentifier!
 
-    static let viewCycle = Logger(subsystem: subsystem, category: "viewcycle")
+    static let vlog = Logger(subsystem: subsystem, category: "vlog")
     
     public func logDebugInView(_ log: String) -> EmptyView {
-        Logger.viewCycle.debug("log:\(log)")
+        Logger.vlog.debug("log:\(log)")
         return EmptyView()
+    }
+    
+    public func logDebugSimple(_ log: String) {
+        Logger.vlog.debug("log:\(log)")
     }
 }
 

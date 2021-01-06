@@ -64,7 +64,7 @@
             return nil;
         }
         
-        _logger = os_log_create("com.fwkit.swatchesreader", "thumbs");
+        _logger = os_log_create("com.fwkit.swatches", "thumbs");
 
         _lineDelimiter = @"\n";
         _currentOffset = 0ULL; // constant - 0 unsigned long long

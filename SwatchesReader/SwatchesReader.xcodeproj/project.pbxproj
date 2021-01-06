@@ -43,6 +43,7 @@
 		228004DC25A2A2460071FE42 /* icon-doc.png in Resources */ = {isa = PBXBuildFile; fileRef = 228004DB25A2A2460071FE42 /* icon-doc.png */; };
 		228004DD25A2A2460071FE42 /* icon-doc.png in Resources */ = {isa = PBXBuildFile; fileRef = 228004DB25A2A2460071FE42 /* icon-doc.png */; };
 		228004DE25A2A2460071FE42 /* icon-doc.png in Resources */ = {isa = PBXBuildFile; fileRef = 228004DB25A2A2460071FE42 /* icon-doc.png */; };
+		2298ADA725A465020026F491 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2298ADA625A465010026F491 /* README.md */; };
 		229F1EF7257279AE00A821F5 /* FeatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F1EF5257279AE00A821F5 /* FeatureCell.swift */; };
 		229F1EF8257279AE00A821F5 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F1EF6257279AE00A821F5 /* WelcomeScreen.swift */; };
 		22CB86A62574143700184A7D /* SwatchesContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CB86A52574143700184A7D /* SwatchesContentView.swift */; };
@@ -127,6 +128,7 @@
 		2280047925A25DC20071FE42 /* SRAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRAppDelegate.swift; sourceTree = "<group>"; };
 		2280048725A264D50071FE42 /* Crayola.gpl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Crayola.gpl; sourceTree = "<group>"; };
 		228004DB25A2A2460071FE42 /* icon-doc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-doc.png"; sourceTree = "<group>"; };
+		2298ADA625A465010026F491 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		229F1EF5257279AE00A821F5 /* FeatureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureCell.swift; sourceTree = "<group>"; };
 		229F1EF6257279AE00A821F5 /* WelcomeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		22CB86A52574143700184A7D /* SwatchesContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwatchesContentView.swift; sourceTree = "<group>"; };
@@ -187,9 +189,9 @@
 		226C4DD6259DE12000021C60 /* ColorCollection */ = {
 			isa = PBXGroup;
 			children = (
+				226C4DC5259DDF0200021C60 /* SwatchesExtensions.swift */,
 				22CB86A12574120300184A7D /* ReadableDocuments */,
 				22D158B225A36650001DBF7D /* Swatches */,
-				226C4DC5259DDF0200021C60 /* SwatchesExtensions.swift */,
 				22D158B125A36644001DBF7D /* View */,
 			);
 			path = ColorCollection;
@@ -379,6 +381,7 @@
 		866466D1256F11D20086AC94 = {
 			isa = PBXGroup;
 			children = (
+				2298ADA625A465010026F491 /* README.md */,
 				229F1EE7257275BA00A821F5 /* ThirdParty */,
 				866466DC256F11D20086AC94 /* SwatchesReader */,
 				2273D3E8259C8CEF0008CC8F /* SwatchesReaderThumbs */,
@@ -539,6 +542,7 @@
 			files = (
 				866466E5256F11D20086AC94 /* Preview Assets.xcassets in Resources */,
 				866466E2256F11D20086AC94 /* Assets.xcassets in Resources */,
+				2298ADA725A465020026F491 /* README.md in Resources */,
 				2280048B25A2673D0071FE42 /* Crayola.gpl in Resources */,
 				228004DC25A2A2460071FE42 /* icon-doc.png in Resources */,
 			);
@@ -631,6 +635,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = Q4TNU7NK94;
 				INFOPLIST_FILE = SwatchesReaderThumbs/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -639,7 +644,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatchesreader.SwatchesReaderThumbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatches.SwatchesReaderThumbs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -650,6 +655,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = Q4TNU7NK94;
 				INFOPLIST_FILE = SwatchesReaderThumbs/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -658,7 +664,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatchesreader.SwatchesReaderThumbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatches.SwatchesReaderThumbs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -669,6 +675,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = Q4TNU7NK94;
 				INFOPLIST_FILE = SwatchesReaderQuickLook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -677,7 +684,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatchesreader.SwatchesReaderQuickLook;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatches.SwatchesReaderQuickLook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -688,6 +695,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = Q4TNU7NK94;
 				INFOPLIST_FILE = SwatchesReaderQuickLook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -696,7 +704,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatchesreader.SwatchesReaderQuickLook;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatches.SwatchesReaderQuickLook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -826,6 +834,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SwatchesReader/SwatchesReader.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"SwatchesReader/Preview Content\"";
 				DEVELOPMENT_TEAM = Q4TNU7NK94;
 				ENABLE_PREVIEWS = YES;
@@ -835,7 +844,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatchesreader;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatches;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -849,6 +858,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SwatchesReader/SwatchesReader.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"SwatchesReader/Preview Content\"";
 				DEVELOPMENT_TEAM = Q4TNU7NK94;
 				ENABLE_PREVIEWS = YES;
@@ -858,7 +868,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatchesreader;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatches;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

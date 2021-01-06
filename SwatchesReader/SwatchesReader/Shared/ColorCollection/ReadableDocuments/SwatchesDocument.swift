@@ -93,7 +93,7 @@ extension SwatchesDocument: FileDocument {
                     let channelsStr = lineStr[9...].trimmingCharacters(in: self.unsafeCharacters)
                     isRGBA = channelsStr.elementsEqual("RGBA")
                     if !isRGBA {
-                        Logger.viewCycle.error("Unsupported color space")
+                        Logger.vlog.error("Unsupported color space")
                         break
                     }
                     continue
@@ -101,34 +101,34 @@ extension SwatchesDocument: FileDocument {
                 
                 var componentsArr:[Substring] = lineStr.split(whereSeparator: \.isWhitespace)
                 if ( componentsArr.count == 0 ) {
-                    Logger.viewCycle.error("Not a color, skipped")
+                    Logger.vlog.error("Not a color, skipped")
                     continue
                 }
                 componentsArr = componentsArr.filter({ $0 != ""})
                 
                 if( componentsArr.count < 3 ) {
-                    Logger.viewCycle.error("Not a color, skipped")
+                    Logger.vlog.error("Not a color, skipped")
                     continue
                 }
                 
                 let rStr = componentsArr[0]
                 let r: Int = Int(rStr)!
                 if( r<0 || r>255) {
-                    Logger.viewCycle.error("Value of the red component %li is wrong, color skipped \(r) ")
+                    Logger.vlog.error("Value of the red component %li is wrong, color skipped \(r) ")
                     continue
                 }
                 
                 let gStr = componentsArr[1]
                 let g: Int = Int(gStr)!
                 if( g<0 || g>255) {
-                    Logger.viewCycle.error("Value of the green component %li is wrong, color skipped \(g) ")
+                    Logger.vlog.error("Value of the green component %li is wrong, color skipped \(g) ")
                     continue
                 }
                 
                 let bStr = componentsArr[2]
                 let b: Int = Int(bStr)!
                 if( b<0 || b>255) {
-                    Logger.viewCycle.error("Value of the blue component %li is wrong, color skipped \(b) ")
+                    Logger.vlog.error("Value of the blue component %li is wrong, color skipped \(b) ")
                     continue
                 }
                 
@@ -166,7 +166,7 @@ extension SwatchesDocument: FileDocument {
         
         let collection = SwatchesCollection(collectionName:paletteName!, groups:[group], ungrouped:ungrouped)
         self.swatchesCollection = collection
-        Logger.viewCycle.debug("\(collection)")
+        Logger.vlog.debug("\(collection)")
         
 
     }

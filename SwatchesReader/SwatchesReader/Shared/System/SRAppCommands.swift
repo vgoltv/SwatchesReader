@@ -26,7 +26,8 @@ struct SRAppCommands: Commands {
     
     func help() {
         
-        let string: String = "https://lineengraver.com"
+        let string: String = "https://lineengraver.com/swatchesreader"
+        // https://lineengraver.com/swatchesreader_app_policy
         
         guard let url: URL = URL(string: string) else {
             return

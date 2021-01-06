@@ -50,7 +50,7 @@
 {
     if(self = [super init])
     {
-        _logger = os_log_create("com.fwkit.swatchesreader", "colors");
+        _logger = os_log_create("com.fwkit.swatches", "colors");
         
         _tag = -1;
         

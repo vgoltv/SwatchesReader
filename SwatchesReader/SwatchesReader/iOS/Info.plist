@@ -7,24 +7,26 @@
 	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleDocumentTypes</key>
-	<dict>
-		<key>CFBundleTypeIconFile</key>
-		<string>icon-doc.png</string>
-		<key>CFBundleTypeIconFiles</key>
-		<array>
+	<array>
+		<dict>
+			<key>CFBundleTypeIconFile</key>
 			<string>icon-doc.png</string>
-		</array>
-		<key>CFBundleTypeName</key>
-		<string>GPLDocument</string>
-		<key>CFBundleTypeRole</key>
-		<string>Viewer</string>
-		<key>LSHandlerRank</key>
-		<string>Default</string>
-		<key>LSItemContentTypes</key>
-		<array>
-			<string>org.gimp.gpl</string>
-		</array>
-	</dict>
+			<key>CFBundleTypeIconFiles</key>
+			<array>
+				<string>icon-doc.png</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>GPLDocument</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.gimp.gpl</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -38,7 +40,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>

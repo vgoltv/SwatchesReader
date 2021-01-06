@@ -149,7 +149,7 @@
                                                              options:NSFileCoordinatorReadingWithoutChanges | NSFileCoordinatorReadingResolvesSymbolicLink
                                                                error:&coordinatorError
                                                           byAccessor:^(NSURL *newURL) {
-                os_log_t logger = os_log_create("com.fwkit.swatchesreader", "color");
+                os_log_t logger = os_log_create("com.fwkit.swatches", "color");
                 if(coordinatorError)
                 {
                     os_log_with_type(logger, OS_LOG_TYPE_ERROR, "File coordinator error: %@", coordinatorError );
@@ -354,7 +354,7 @@
 
 - (void)_commonInitWithURL:(NSURL *)url
 {
-    _logger = os_log_create("com.fwkit.swatchesreader", "color");
+    _logger = os_log_create("com.fwkit.swatches", "color");
     
     _url = nil;
     
