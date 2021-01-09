@@ -68,6 +68,27 @@ extension String {
     }
 }
 
+extension UIColor {
+    var inverted: UIColor {
+        var a: CGFloat = 0.0, r: CGFloat = 0.0, g: CGFloat = 0.0, b: CGFloat = 0.0
+        return getRed(&r, green: &g, blue: &b, alpha: &a) ? UIColor(red: 1.0-r, green: 1.0-g, blue: 1.0-b, alpha: a) : .black
+    }
+}
+
+extension UIColor {
+    var lightness: CGFloat {
+        var r:CGFloat = 0.0; var g:CGFloat = 0.0; var b:CGFloat = 0.0; var a:CGFloat = 0.0;
+        if self.getRed(&r, green: &g, blue: &b, alpha: &a) {
+            let colorMax: CGFloat = max(max(r,g),b)
+            let colorMin: CGFloat = min(min(r,g),b)
+            let L: CGFloat = (colorMax+colorMin)*0.5
+            return L
+        }
+        
+        return 0
+    }
+}
+
 extension Color {
     init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)

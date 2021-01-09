@@ -1,5 +1,5 @@
 //
-//  SwatchesCollection.swift
+//  SRSwatchesCollection.swift
 //  SwatchesReader
 //
 //  Created by Viktor Goltvyanytsya on 02.01.2021.
@@ -17,33 +17,39 @@ import SwiftUI
 import os.log
 
 
-public struct SwatchesCollection {
+public struct SRSwatchesCollection {
+    
+    public static var emptyCollection: SRSwatchesCollection =
+        SRSwatchesCollection(collectionName:"", groups:[],
+                             ungrouped:SRSwatchesGroup(groupName:"", swatches:[] ))
     
     private var cName: String = ""
-    private var cGroups: [SwatchesGroup] = []
-    private var cUngrouped: SwatchesGroup
+    private var cGroups: [SRSwatchesGroup] = []
+    private var cUngrouped: SRSwatchesGroup
     
-    public init(collectionName: String, groups:[SwatchesGroup], ungrouped:SwatchesGroup ) {
+    public init(collectionName: String, groups:[SRSwatchesGroup], ungrouped:SRSwatchesGroup ) {
         self.cName = collectionName
         self.cGroups.append(contentsOf: groups)
         self.cUngrouped = ungrouped
     }
     
+
+    
     public func collectionName() -> String {
         return cName
     }
     
-    public func groups() -> [SwatchesGroup] {
+    public func groups() -> [SRSwatchesGroup] {
         return cGroups
     }
     
-    public func ungrouped() -> SwatchesGroup {
+    public func ungrouped() -> SRSwatchesGroup {
         return cUngrouped
     }
     
 }
 
-extension SwatchesCollection: CustomStringConvertible {
+extension SRSwatchesCollection: CustomStringConvertible {
     public var description: String {
         return """
         --- --- ---

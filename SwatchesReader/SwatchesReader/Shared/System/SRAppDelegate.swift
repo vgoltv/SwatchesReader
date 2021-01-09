@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import UIKit
 import os.log
 
@@ -13,7 +14,7 @@ import os.log
 class SRAppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
-            launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+                        launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         copySamplePalette()
         return true
     }
@@ -27,8 +28,12 @@ class SRAppDelegate: NSObject, UIApplicationDelegate {
     }
     
     // MARK: UISceneSession Lifecycle
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession,
+                     options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        
+        let configuration = UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+        
+        return configuration
     }
     
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
@@ -46,10 +51,10 @@ class SRAppDelegate: NSObject, UIApplicationDelegate {
             Logger.appLogger.debug("Sample file not found")
             return
         }
-
+        
         guard let newDestPath = destPath, let fullDestPath = NSURL(fileURLWithPath: newDestPath.absoluteString).appendingPathComponent("Crayola.gpl") else { return  }
-
-
+        
+        
         if !filemgr.fileExists(atPath: newDestPath.path) {
             do {
                 try filemgr.createDirectory(atPath: newDestPath.path, withIntermediateDirectories: true, attributes: nil)
@@ -60,7 +65,7 @@ class SRAppDelegate: NSObject, UIApplicationDelegate {
         else {
             Logger.appLogger.debug("Folder is exist")
         }
-
+        
         if filemgr.fileExists(atPath: fullDestPath.path) {
             Logger.appLogger.debug("File is exist in \(fullDestPath.path)")
         }
@@ -77,7 +82,7 @@ class SRAppDelegate: NSObject, UIApplicationDelegate {
 
 extension Logger {
     private static var subsystem = Bundle.main.bundleIdentifier!
-
+    
     static let appLogger = Logger(subsystem: subsystem, category: "appLogger")
     
     public func logDebug(_ log: String) {

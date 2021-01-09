@@ -9,79 +9,126 @@ import SwiftUI
 import os.log
 
 struct SwatchesCell: View {
-
-    var title: String
-    var subtitle: String
-    var hexStr: String
-    var descr: String
-    var color: Color
-    var gridLayout: Bool
     
-    /*
-     There is a strange warning, I don't know how to fix it for now:
-     
-    [UIContextMenuInteraction updateVisibleMenuWithBlock:] while no context menu is visible. This won't do anything.
-    */
+    @Binding var selectedCellIndexPath: IndexPath
+    let indexPath: IndexPath
+    let swatch: SRSwatch
+    var viewOption: Int
+    
     
     var body: some View {
         
-        Menu {
-            Button(hexStr, action: { UIPasteboard.general.string = hexStr } )
-            Button(descr, action: { UIPasteboard.general.string = descr } )
-        } label: {
+        if ( self.viewOption == 0 ) {
+            
             Button(action: {
-                Logger.vlog.logDebugSimple("action")
-                }, label: {
-
-                    HStack(spacing: 2) {
-                        if ( !self.gridLayout ) {
-                            
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(title)
-                                    .lineLimit(1)
-                                    .font(.subheadline)
-                                Text(hexStr)
-                                    .lineLimit(1)
-                                    .foregroundColor(.secondary)
-                                    .font(.subheadline)
-                                Text(subtitle)
-                                    .lineLimit(1)
-                                    .foregroundColor(.secondary)
-                                    .font(.subheadline)
-                            }
-                            .frame(minWidth: 0,
-                                            maxWidth: .infinity,
-                                            minHeight: 0,
-                                            maxHeight: .infinity,
-                                            alignment: .topLeading)
-                            
-                            RoundedRectangle(cornerRadius: 3)
-                                .addBorder(Color.gray, width: 0.5, cornerRadius: 3)
-                                .foregroundColor(self.color)
-                                .frame(width:100, height: 70)
-                        } else {
-                            RoundedRectangle(cornerRadius: 3)
-                                .addBorder(Color.gray, width: 0.5, cornerRadius: 3)
-                                .foregroundColor(self.color)
-                                .frame(height: 70)
-                        }
-                        
-                        
+                if( selectedCellIndexPath.row == indexPath.row && selectedCellIndexPath.row == indexPath.row  ){
+                    self.selectedCellIndexPath = IndexPath(row: -1, section: -1)
+                }else{
+                    self.selectedCellIndexPath = indexPath
+                }
+                
+            }, label: {
+                ZStack {
+                    
+                    
+                    if( selectedCellIndexPath.row == indexPath.row && selectedCellIndexPath.row == indexPath.row  ){
+                        Color(UIColor.secondarySystemBackground).ignoresSafeArea()
+                    }else{
+                        Color(UIColor.systemBackground).ignoresSafeArea()
                     }
-                    .padding(EdgeInsets(top: 1.0, leading: 0.0, bottom: 5.0, trailing: 0.0))
-                    Spacer()
-                })
-                .buttonStyle(BorderlessButtonStyle())
+                    
+                    HStack(spacing: 2) {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(swatch.baseColorName())
+                                .lineLimit(1)
+                                .font(.subheadline)
+                            Text(swatch.hexString())
+                                .lineLimit(1)
+                                .foregroundColor(.secondary)
+                                .font(.subheadline)
+                            Text(swatch.baseColorString())
+                                .lineLimit(1)
+                                .foregroundColor(.secondary)
+                                .font(.subheadline)
+                        }
+                        .frame(minWidth: 0,
+                               maxWidth: .infinity,
+                               minHeight: 0,
+                               maxHeight: .infinity,
+                               alignment: .topLeading)
+                        
+                        
+                        
+                        if( selectedCellIndexPath.row == indexPath.row && selectedCellIndexPath.row == indexPath.row  ){
+                            RoundedRectangle(cornerRadius: 3)
+                                .addBorder(Color(UIColor.link), width: 5, cornerRadius: 3)
+                                .foregroundColor(swatch.baseColor())
+                                .frame(width:100, height: 70)
+                        }else{
+                            RoundedRectangle(cornerRadius: 3)
+                                .addBorder(Color(UIColor.opaqueSeparator), width: 0.5, cornerRadius: 3)
+                                .foregroundColor(swatch.baseColor())
+                                .frame(width:100, height: 70)
+                        }
+                    }
+                    
+                }
+                
+            }).contextMenu {
+                Button(action: {
+                    UIPasteboard.general.color = swatch.baseUIColor()
+                }) {
+                    Text("UIColor")
+                    Image(systemName: "eyedropper.full")
+                }
+                
+                Button(swatch.hexString(), action: { UIPasteboard.general.string = swatch.hexString() } )
+                Button(swatch.baseColorString(), action: { UIPasteboard.general.string = swatch.baseColorString() } )
+            }
+            
+            
+            
+        }else{
+            
+            Button(action: {
+                if( selectedCellIndexPath.row == indexPath.row && selectedCellIndexPath.row == indexPath.row  ){
+                    self.selectedCellIndexPath = IndexPath(row: -1, section: -1)
+                }else{
+                    self.selectedCellIndexPath = indexPath
+                }
+            }, label: {
+                if( selectedCellIndexPath.row == indexPath.row && selectedCellIndexPath.row == indexPath.row  ){
+                    RoundedRectangle(cornerRadius: 3)
+                        .addBorder(Color(UIColor.link), width: 5, cornerRadius: 3)
+                        .foregroundColor(swatch.baseColor())
+                        .frame(height: 70)
+                }else{
+                    RoundedRectangle(cornerRadius: 3)
+                        .addBorder(Color(UIColor.separator), width: 0.5, cornerRadius: 3)
+                        .foregroundColor(swatch.baseColor())
+                        .frame(height: 70)
+                }
+                
+            }).contextMenu {
+                Button(action: {
+                    UIPasteboard.general.color = swatch.baseUIColor()
+                }) {
+                    Text("UIColor")
+                    Image(systemName: "eyedropper.full")
+                }
+                
+                Button(swatch.hexString(), action: { UIPasteboard.general.string = swatch.hexString() } )
+                Button(swatch.baseColorString(), action: { UIPasteboard.general.string = swatch.baseColorString() } )
+            }
         }
-        .menuStyle(BorderlessButtonMenuStyle())
         
-        if ( !self.gridLayout ) {
-            Divider().background(Color(.sRGB, red: 0.5, green: 0.5, blue: 0.5, opacity: 0.2)).frame(height: 0.5)
+        if ( self.viewOption == 0 ) {
+            Divider().background(Color(UIColor.separator)).frame(height: 0.5)
         }
     }
     
     
     
-
+    
 }
 

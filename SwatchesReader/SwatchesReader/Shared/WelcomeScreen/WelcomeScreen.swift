@@ -29,11 +29,10 @@ struct WelcomeScreen: View {
             Spacer()
             
             VStack(spacing: 24) {
-                FeatureCell(image: "list.bullet.rectangle", title: "Color Swatches", subtitle: "Read GIMP color palettes *.gpl", color: .green)
+                FeatureCell(image: "eyedropper.full", title: "Color to Clipboard", subtitle: "This release adds the ability to copy color, not just string", color: .green)
                 
-                FeatureCell(image: "square.grid.2x2", title: "Thumbnails", subtitle: "Includes fast thumbnails extension for the Files app", color: .blue)
+                FeatureCell(image: "eye", title: "Improved Layout", subtitle: "Color cells are now selectable", color: .blue)
                 
-                FeatureCell(image: "eye", title: "QuickLook", subtitle: "QuickLook extension to display fast preview of the palette on Files app", color: .red)
             }
             .padding(.leading)
             

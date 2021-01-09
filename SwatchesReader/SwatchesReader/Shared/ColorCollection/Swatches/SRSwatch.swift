@@ -1,5 +1,5 @@
 //
-//  Swatch.swift
+//  SRSwatch.swift
 //  SwatchesReader
 //
 //  Created by Viktor Goltvyanytsya on 11/27/20.
@@ -11,7 +11,7 @@ import os.log
 
 
 
-public struct Swatch: Codable, Equatable {
+public struct SRSwatch: Codable, Equatable {
     
     private var colorName: String
     private var color: UIColor
@@ -82,7 +82,7 @@ public struct Swatch: Codable, Equatable {
     
 }
 
-extension Swatch: CustomStringConvertible {
+extension SRSwatch: CustomStringConvertible {
     public var description: String {
         return """
         --- --- ---
