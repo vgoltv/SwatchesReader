@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "iPad_Notification_20@2x-1.png",
+      "filename" : "iPhone_Notification_20@2x-1.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
@@ -13,7 +13,7 @@
       "size" : "20x20"
     },
     {
-      "filename" : "iPad_Settings_29@2x-1.png",
+      "filename" : "iPad_Settings_29@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
@@ -25,7 +25,7 @@
       "size" : "29x29"
     },
     {
-      "filename" : "iPad_Spotlight_40@2x-1.png",
+      "filename" : "iPhone_Spotlight_40@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
@@ -37,7 +37,7 @@
       "size" : "40x40"
     },
     {
-      "filename" : "iPhone_App_60@2x-1.png",
+      "filename" : "iPhone_App_60@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
@@ -55,7 +55,7 @@
       "size" : "20x20"
     },
     {
-      "filename" : "iPad_Notification_20@2x.png",
+      "filename" : "iPhone_Notification_20@2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
@@ -67,7 +67,7 @@
       "size" : "29x29"
     },
     {
-      "filename" : "iPad_Settings_29@2x.png",
+      "filename" : "iPhone_Settings_29@2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
@@ -103,7 +103,7 @@
       "size" : "83.5x83.5"
     },
     {
-      "filename" : "iOS_App_Store_1024.png",
+      "filename" : "Apple_Watch_App_Store_1024.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
