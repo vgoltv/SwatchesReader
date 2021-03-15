@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<string>1</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
@@ -36,5 +36,42 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.quicklook.preview</string>
 	</dict>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+				<string>public.symlink</string>
+				<string>public.content</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>gimp_color_palette</string>
+			<key>UTTypeIconFiles</key>
+			<array>
+				<string>icon-doc.png</string>
+			</array>
+			<key>UTTypeIdentifier</key>
+			<string>org.gimp.gpl</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>GPL </string>
+					<string>GPLf</string>
+				</array>
+				<key>public.filename-extension</key>
+				<array>
+					<string>GPL</string>
+					<string>gpl</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/octet-stream</string>
+					<string>application/x-binary</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

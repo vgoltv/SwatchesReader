@@ -11,13 +11,16 @@ import SwiftUI
 struct CPVColorList: View {
     var color: Color
     
+    public init( color: Color ) {
+        self.color = color
+    }
     
     var body: some View {
         
         let bp:CPColor = CPColor(color:color)
         
         let sampleMenuItems: [MenuItem] = [
-            MenuItem(name: bp.hex, label: "Hex", subMenuItems:nil),
+            MenuItem(name: bp.hexstr, label: "Hex", subMenuItems:nil),
             MenuItem(name: bp.rgbstr, label: "RGB", subMenuItems:nil),
             MenuItem(name: bp.cmykstr, label: "CMYK", subMenuItems:nil),
             MenuItem(name: bp.hslstr, label: "HSL", subMenuItems:nil),

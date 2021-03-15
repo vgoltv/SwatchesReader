@@ -18,6 +18,8 @@ struct SRApp: App {
     @Environment(\.scenePhase) var scenePhase
     @State var samplesCopied: Bool = SRAppUtils.checkSamples()
     
+    let manager = SRCoreDataManager.shared
+    
     var errorView: some View {
         Text("Select File")
             .frame(minWidth: 200, maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
@@ -32,6 +34,7 @@ struct SRApp: App {
                     let filename = url.deletingPathExtension().lastPathComponent
                     CPPaletteContentView(document: file.document, filename: filename)
                         .environmentObject(appModel)
+                        .environment(\.managedObjectContext, manager.context)
                         .frame(minWidth: 200, maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
                 }else{
                     errorView

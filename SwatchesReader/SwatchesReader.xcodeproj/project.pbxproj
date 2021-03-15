@@ -12,6 +12,8 @@
 		223679B325AA02EA00265619 /* SRAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223679B225AA02EA00265619 /* SRAppModel.swift */; };
 		223679B925AA079600265619 /* SRAppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223679B825AA079600265619 /* SRAppExtensions.swift */; };
 		223679BF25AA319A00265619 /* CPColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223679BE25AA319A00265619 /* CPColorPickerView.swift */; };
+		22488FAB25BEC648006ED298 /* SRApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22488FA925BEC648006ED298 /* SRApp.xcdatamodeld */; };
+		22488FB325BEC701006ED298 /* SRCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22488FB225BEC701006ED298 /* SRCoreDataManager.swift */; };
 		2253842C25A09F8800E39097 /* CPSwatchesGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253842B25A09F8800E39097 /* CPSwatchesGroup.swift */; };
 		2253843725A0A4D000E39097 /* CPSwatchesPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253843625A0A4D000E39097 /* CPSwatchesPalette.swift */; };
 		226C4DC6259DDF0200021C60 /* CPPaletteExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C4DC5259DDF0200021C60 /* CPPaletteExtensions.swift */; };
@@ -24,32 +26,29 @@
 		2273D401259C90790008CC8F /* BSBaseThumbnailReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D400259C90790008CC8F /* BSBaseThumbnailReader.m */; };
 		2273D406259C91540008CC8F /* BSFileChunkReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D404259C91540008CC8F /* BSFileChunkReader.m */; };
 		2273D40B259C93960008CC8F /* NSData+SwatchesExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D409259C93960008CC8F /* NSData+SwatchesExt.m */; };
-		2273D424259CAF600008CC8F /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2273D423259CAF600008CC8F /* QuickLook.framework */; };
-		2273D428259CAF600008CC8F /* PreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D427259CAF600008CC8F /* PreviewViewController.m */; };
-		2273D42B259CAF600008CC8F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2273D429259CAF600008CC8F /* MainInterface.storyboard */; };
-		2273D42F259CAF600008CC8F /* SwatchesReaderQuickLook.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2273D422259CAF600008CC8F /* SwatchesReaderQuickLook.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		2273D438259CB1390008CC8F /* PreviewColorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D436259CB1390008CC8F /* PreviewColorTableViewCell.m */; };
 		2273D441259CB6C20008CC8F /* SRBaseColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D440259CB6C20008CC8F /* SRBaseColor.m */; };
-		2273D442259CB6C20008CC8F /* SRBaseColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D440259CB6C20008CC8F /* SRBaseColor.m */; };
 		2273D448259CB8930008CC8F /* SRColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D447259CB8930008CC8F /* SRColorGroup.m */; };
-		2273D449259CB8930008CC8F /* SRColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D447259CB8930008CC8F /* SRColorGroup.m */; };
 		2273D44F259CB8B00008CC8F /* SRColorCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D44E259CB8B00008CC8F /* SRColorCollection.m */; };
-		2273D450259CB8B00008CC8F /* SRColorCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D44E259CB8B00008CC8F /* SRColorCollection.m */; };
-		2273D454259CC7060008CC8F /* BSFileChunkReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D404259C91540008CC8F /* BSFileChunkReader.m */; };
-		2273D458259CC70A0008CC8F /* NSData+SwatchesExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D409259C93960008CC8F /* NSData+SwatchesExt.m */; };
-		2273D45C259CC7100008CC8F /* BSBaseThumbnailReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D400259C90790008CC8F /* BSBaseThumbnailReader.m */; };
-		2273D460259CC7140008CC8F /* BSGPLThumbnailReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D3FB259C8FEE0008CC8F /* BSGPLThumbnailReader.m */; };
 		2273D467259CC82B0008CC8F /* SRColorCollectionFileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D466259CC82B0008CC8F /* SRColorCollectionFileHandler.m */; };
-		2273D468259CC82B0008CC8F /* SRColorCollectionFileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273D466259CC82B0008CC8F /* SRColorCollectionFileHandler.m */; };
 		2280047525A25AA10071FE42 /* CPPaletteDocumentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2280047425A25AA10071FE42 /* CPPaletteDocumentError.swift */; };
 		2280048B25A2673D0071FE42 /* Crayola.gpl in Resources */ = {isa = PBXBuildFile; fileRef = 2280048725A264D50071FE42 /* Crayola.gpl */; };
 		228004DC25A2A2460071FE42 /* icon-doc.png in Resources */ = {isa = PBXBuildFile; fileRef = 228004DB25A2A2460071FE42 /* icon-doc.png */; };
 		228004DD25A2A2460071FE42 /* icon-doc.png in Resources */ = {isa = PBXBuildFile; fileRef = 228004DB25A2A2460071FE42 /* icon-doc.png */; };
-		228004DE25A2A2460071FE42 /* icon-doc.png in Resources */ = {isa = PBXBuildFile; fileRef = 228004DB25A2A2460071FE42 /* icon-doc.png */; };
 		228940AB25BB140800E68C68 /* CPMenuCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228940AA25BB140800E68C68 /* CPMenuCopy.swift */; };
 		2298ADA725A465020026F491 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2298ADA625A465010026F491 /* README.md */; };
 		229F1EF7257279AE00A821F5 /* FeatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F1EF5257279AE00A821F5 /* FeatureCell.swift */; };
 		229F1EF8257279AE00A821F5 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F1EF6257279AE00A821F5 /* WelcomeScreen.swift */; };
+		22C9924225FE3310006222C0 /* SRAppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223679B825AA079600265619 /* SRAppExtensions.swift */; };
+		22C9925625FE37FC006222C0 /* CPSwatchesPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253843625A0A4D000E39097 /* CPSwatchesPalette.swift */; };
+		22C9925A25FE3801006222C0 /* CPSwatchesGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253842B25A09F8800E39097 /* CPSwatchesGroup.swift */; };
+		22C9925B25FE3808006222C0 /* CPSwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F55461259BCB2A0081A5FA /* CPSwatch.swift */; };
+		22C9925C25FE380E006222C0 /* CPGPLPaletteFileRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DF4F0625A651EF00E48AFF /* CPGPLPaletteFileRepresentation.swift */; };
+		22C9925D25FE3812006222C0 /* CPPaletteFileRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2236799825A99BAD00265619 /* CPPaletteFileRepresentation.swift */; };
+		22C9925E25FE3816006222C0 /* CPPaletteDocumentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2280047425A25AA10071FE42 /* CPPaletteDocumentError.swift */; };
+		22C9926225FE389F006222C0 /* CPColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F78F4525B1DB5400E5DEB4 /* CPColor.swift */; };
+		22C9926625FE3912006222C0 /* CPPaletteExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C4DC5259DDF0200021C60 /* CPPaletteExtensions.swift */; };
+		22C9926A25FE4013006222C0 /* icon-doc.png in Resources */ = {isa = PBXBuildFile; fileRef = 228004DB25A2A2460071FE42 /* icon-doc.png */; };
+		22C9926F25FE5365006222C0 /* SwatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9926E25FE5365006222C0 /* SwatchCell.swift */; };
 		22CB86A62574143700184A7D /* CPPaletteContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CB86A52574143700184A7D /* CPPaletteContentView.swift */; };
 		22CB86C72574429B00184A7D /* CPPaletteDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CB86C62574429A00184A7D /* CPPaletteDocument.swift */; };
 		22CD828D25BA0B5700701E79 /* CPVColorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CD828C25BA0B5700701E79 /* CPVColorList.swift */; };
@@ -58,6 +57,10 @@
 		22E8E82F259F4A5C00DD2D76 /* CPPaletteColorItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8E82D259F4A5C00DD2D76 /* CPPaletteColorItemCell.swift */; };
 		22F55462259BCB2A0081A5FA /* CPSwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F55461259BCB2A0081A5FA /* CPSwatch.swift */; };
 		22F78F4625B1DB5400E5DEB4 /* CPColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F78F4525B1DB5400E5DEB4 /* CPColor.swift */; };
+		22FC10AC25FCF32B00E9D36A /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2273D423259CAF600008CC8F /* QuickLook.framework */; };
+		22FC10AF25FCF32C00E9D36A /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC10AE25FCF32C00E9D36A /* PreviewViewController.swift */; };
+		22FC10B225FCF32C00E9D36A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22FC10B025FCF32C00E9D36A /* MainInterface.storyboard */; };
+		22FC10B625FCF32C00E9D36A /* SwatchesReaderQuickLook.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 22FC10AB25FCF32B00E9D36A /* SwatchesReaderQuickLook.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		866466DE256F11D20086AC94 /* SRApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866466DD256F11D20086AC94 /* SRApp.swift */; };
 		866466E2256F11D20086AC94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 866466E1256F11D20086AC94 /* Assets.xcassets */; };
 		866466E5256F11D20086AC94 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 866466E4256F11D20086AC94 /* Preview Assets.xcassets */; };
@@ -71,11 +74,11 @@
 			remoteGlobalIDString = 2273D3E3259C8CEF0008CC8F;
 			remoteInfo = SwatchesReaderThumbs;
 		};
-		2273D42D259CAF600008CC8F /* PBXContainerItemProxy */ = {
+		22FC10B425FCF32C00E9D36A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 866466D2256F11D20086AC94 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 2273D421259CAF600008CC8F;
+			remoteGlobalIDString = 22FC10AA25FCF32B00E9D36A;
 			remoteInfo = SwatchesReaderQuickLook;
 		};
 /* End PBXContainerItemProxy section */
@@ -87,7 +90,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				2273D42F259CAF600008CC8F /* SwatchesReaderQuickLook.appex in Embed App Extensions */,
+				22FC10B625FCF32C00E9D36A /* SwatchesReaderQuickLook.appex in Embed App Extensions */,
 				2273D3EF259C8CF00008CC8F /* SwatchesReaderThumbs.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -101,6 +104,8 @@
 		223679B225AA02EA00265619 /* SRAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRAppModel.swift; sourceTree = "<group>"; };
 		223679B825AA079600265619 /* SRAppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRAppExtensions.swift; sourceTree = "<group>"; };
 		223679BE25AA319A00265619 /* CPColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPColorPickerView.swift; sourceTree = "<group>"; };
+		22488FAA25BEC648006ED298 /* FinancialApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FinancialApp.xcdatamodel; sourceTree = "<group>"; };
+		22488FB225BEC701006ED298 /* SRCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRCoreDataManager.swift; sourceTree = "<group>"; };
 		2253842B25A09F8800E39097 /* CPSwatchesGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPSwatchesGroup.swift; sourceTree = "<group>"; };
 		2253843625A0A4D000E39097 /* CPSwatchesPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPSwatchesPalette.swift; sourceTree = "<group>"; };
 		226C4DC5259DDF0200021C60 /* CPPaletteExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPPaletteExtensions.swift; sourceTree = "<group>"; };
@@ -120,14 +125,7 @@
 		2273D405259C91540008CC8F /* BSFileChunkReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSFileChunkReader.h; sourceTree = "<group>"; };
 		2273D409259C93960008CC8F /* NSData+SwatchesExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SwatchesExt.m"; sourceTree = "<group>"; };
 		2273D40A259C93960008CC8F /* NSData+SwatchesExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SwatchesExt.h"; sourceTree = "<group>"; };
-		2273D422259CAF600008CC8F /* SwatchesReaderQuickLook.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SwatchesReaderQuickLook.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2273D423259CAF600008CC8F /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
-		2273D426259CAF600008CC8F /* PreviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreviewViewController.h; sourceTree = "<group>"; };
-		2273D427259CAF600008CC8F /* PreviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreviewViewController.m; sourceTree = "<group>"; };
-		2273D42A259CAF600008CC8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		2273D42C259CAF600008CC8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2273D436259CB1390008CC8F /* PreviewColorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewColorTableViewCell.m; sourceTree = "<group>"; };
-		2273D437259CB1390008CC8F /* PreviewColorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewColorTableViewCell.h; sourceTree = "<group>"; };
 		2273D43F259CB6C20008CC8F /* SRBaseColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SRBaseColor.h; sourceTree = "<group>"; };
 		2273D440259CB6C20008CC8F /* SRBaseColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SRBaseColor.m; sourceTree = "<group>"; };
 		2273D446259CB8930008CC8F /* SRColorGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SRColorGroup.h; sourceTree = "<group>"; };
@@ -143,6 +141,7 @@
 		2298ADA625A465010026F491 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		229F1EF5257279AE00A821F5 /* FeatureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureCell.swift; sourceTree = "<group>"; };
 		229F1EF6257279AE00A821F5 /* WelcomeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
+		22C9926E25FE5365006222C0 /* SwatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwatchCell.swift; sourceTree = "<group>"; };
 		22CB86A52574143700184A7D /* CPPaletteContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPPaletteContentView.swift; sourceTree = "<group>"; };
 		22CB86C62574429A00184A7D /* CPPaletteDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPPaletteDocument.swift; sourceTree = "<group>"; };
 		22CD828C25BA0B5700701E79 /* CPVColorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPVColorList.swift; sourceTree = "<group>"; };
@@ -151,6 +150,10 @@
 		22E8E82D259F4A5C00DD2D76 /* CPPaletteColorItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPPaletteColorItemCell.swift; sourceTree = "<group>"; };
 		22F55461259BCB2A0081A5FA /* CPSwatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPSwatch.swift; sourceTree = "<group>"; };
 		22F78F4525B1DB5400E5DEB4 /* CPColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPColor.swift; sourceTree = "<group>"; };
+		22FC10AB25FCF32B00E9D36A /* SwatchesReaderQuickLook.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SwatchesReaderQuickLook.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		22FC10AE25FCF32C00E9D36A /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		22FC10B125FCF32C00E9D36A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		22FC10B325FCF32C00E9D36A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		866466DA256F11D20086AC94 /* SwatchesReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwatchesReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866466DD256F11D20086AC94 /* SRApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRApp.swift; sourceTree = "<group>"; };
 		866466E1256F11D20086AC94 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -169,11 +172,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2273D41F259CAF600008CC8F /* Frameworks */ = {
+		22FC10A825FCF32B00E9D36A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2273D424259CAF600008CC8F /* QuickLook.framework in Frameworks */,
+				22FC10AC25FCF32B00E9D36A /* QuickLook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +201,8 @@
 		223679B125AA022400265619 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				22488FB225BEC701006ED298 /* SRCoreDataManager.swift */,
+				22488FA925BEC648006ED298 /* SRApp.xcdatamodeld */,
 				223679B225AA02EA00265619 /* SRAppModel.swift */,
 			);
 			path = Model;
@@ -302,27 +307,6 @@
 			path = gpl;
 			sourceTree = "<group>";
 		};
-		2273D425259CAF600008CC8F /* SwatchesReaderQuickLook */ = {
-			isa = PBXGroup;
-			children = (
-				2273D42C259CAF600008CC8F /* Info.plist */,
-				2273D429259CAF600008CC8F /* MainInterface.storyboard */,
-				2273D426259CAF600008CC8F /* PreviewViewController.h */,
-				2273D427259CAF600008CC8F /* PreviewViewController.m */,
-				2273D43C259CB26E0008CC8F /* cell */,
-			);
-			path = SwatchesReaderQuickLook;
-			sourceTree = "<group>";
-		};
-		2273D43C259CB26E0008CC8F /* cell */ = {
-			isa = PBXGroup;
-			children = (
-				2273D437259CB1390008CC8F /* PreviewColorTableViewCell.h */,
-				2273D436259CB1390008CC8F /* PreviewColorTableViewCell.m */,
-			);
-			path = cell;
-			sourceTree = "<group>";
-		};
 		2273D43E259CB5730008CC8F /* color_collection */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,23 +338,23 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		228004A025A278CD0071FE42 /* System */ = {
+		228004A025A278CD0071FE42 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				866466DD256F11D20086AC94 /* SRApp.swift */,
 				2236799425A97C3600265619 /* Utils */,
 			);
-			path = System;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		229F1EE62572758000A821F5 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				866466E1256F11D20086AC94 /* Assets.xcassets */,
+				228004A025A278CD0071FE42 /* Application */,
 				223679B725AA077000265619 /* Extensions */,
 				223679B125AA022400265619 /* Model */,
 				2280048625A264D00071FE42 /* Resources */,
-				228004A025A278CD0071FE42 /* System */,
 				22C02B1B25AB67BB006BC120 /* Views */,
 			);
 			path = Shared;
@@ -474,6 +458,17 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		22FC10AD25FCF32B00E9D36A /* SwatchesReaderQuickLook */ = {
+			isa = PBXGroup;
+			children = (
+				22FC10B325FCF32C00E9D36A /* Info.plist */,
+				22FC10B025FCF32C00E9D36A /* MainInterface.storyboard */,
+				22FC10AE25FCF32C00E9D36A /* PreviewViewController.swift */,
+				22C9926E25FE5365006222C0 /* SwatchCell.swift */,
+			);
+			path = SwatchesReaderQuickLook;
+			sourceTree = "<group>";
+		};
 		866466D1256F11D20086AC94 = {
 			isa = PBXGroup;
 			children = (
@@ -481,7 +476,7 @@
 				229F1EE7257275BA00A821F5 /* ThirdParty */,
 				866466DC256F11D20086AC94 /* SwatchesReader */,
 				2273D3E8259C8CEF0008CC8F /* SwatchesReaderThumbs */,
-				2273D425259CAF600008CC8F /* SwatchesReaderQuickLook */,
+				22FC10AD25FCF32B00E9D36A /* SwatchesReaderQuickLook */,
 				2273D3E5259C8CEF0008CC8F /* Frameworks */,
 				866466DB256F11D20086AC94 /* Products */,
 			);
@@ -492,7 +487,7 @@
 			children = (
 				866466DA256F11D20086AC94 /* SwatchesReader.app */,
 				2273D3E4259C8CEF0008CC8F /* SwatchesReaderThumbs.appex */,
-				2273D422259CAF600008CC8F /* SwatchesReaderQuickLook.appex */,
+				22FC10AB25FCF32B00E9D36A /* SwatchesReaderQuickLook.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -537,13 +532,13 @@
 			productReference = 2273D3E4259C8CEF0008CC8F /* SwatchesReaderThumbs.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		2273D421259CAF600008CC8F /* SwatchesReaderQuickLook */ = {
+		22FC10AA25FCF32B00E9D36A /* SwatchesReaderQuickLook */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2273D430259CAF600008CC8F /* Build configuration list for PBXNativeTarget "SwatchesReaderQuickLook" */;
+			buildConfigurationList = 22FC10B725FCF32C00E9D36A /* Build configuration list for PBXNativeTarget "SwatchesReaderQuickLook" */;
 			buildPhases = (
-				2273D41E259CAF600008CC8F /* Sources */,
-				2273D41F259CAF600008CC8F /* Frameworks */,
-				2273D420259CAF600008CC8F /* Resources */,
+				22FC10A725FCF32B00E9D36A /* Sources */,
+				22FC10A825FCF32B00E9D36A /* Frameworks */,
+				22FC10A925FCF32B00E9D36A /* Resources */,
 			);
 			buildRules = (
 			);
@@ -551,7 +546,7 @@
 			);
 			name = SwatchesReaderQuickLook;
 			productName = SwatchesReaderQuickLook;
-			productReference = 2273D422259CAF600008CC8F /* SwatchesReaderQuickLook.appex */;
+			productReference = 22FC10AB25FCF32B00E9D36A /* SwatchesReaderQuickLook.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		866466D9256F11D20086AC94 /* SwatchesReader */ = {
@@ -567,7 +562,7 @@
 			);
 			dependencies = (
 				2273D3EE259C8CF00008CC8F /* PBXTargetDependency */,
-				2273D42E259CAF600008CC8F /* PBXTargetDependency */,
+				22FC10B525FCF32C00E9D36A /* PBXTargetDependency */,
 			);
 			name = SwatchesReader;
 			productName = Welcome;
@@ -580,13 +575,13 @@
 		866466D2256F11D20086AC94 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
+				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					2273D3E3259C8CEF0008CC8F = {
 						CreatedOnToolsVersion = 12.3;
 					};
-					2273D421259CAF600008CC8F = {
+					22FC10AA25FCF32B00E9D36A = {
 						CreatedOnToolsVersion = 12.3;
 					};
 					866466D9256F11D20086AC94 = {
@@ -609,7 +604,7 @@
 			targets = (
 				866466D9256F11D20086AC94 /* SwatchesReader */,
 				2273D3E3259C8CEF0008CC8F /* SwatchesReaderThumbs */,
-				2273D421259CAF600008CC8F /* SwatchesReaderQuickLook */,
+				22FC10AA25FCF32B00E9D36A /* SwatchesReaderQuickLook */,
 			);
 		};
 /* End PBXProject section */
@@ -623,12 +618,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2273D420259CAF600008CC8F /* Resources */ = {
+		22FC10A925FCF32B00E9D36A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2273D42B259CAF600008CC8F /* MainInterface.storyboard in Resources */,
-				228004DE25A2A2460071FE42 /* icon-doc.png in Resources */,
+				22FC10B225FCF32C00E9D36A /* MainInterface.storyboard in Resources */,
+				22C9926A25FE4013006222C0 /* icon-doc.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,20 +658,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2273D41E259CAF600008CC8F /* Sources */ = {
+		22FC10A725FCF32B00E9D36A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2273D450259CB8B00008CC8F /* SRColorCollection.m in Sources */,
-				2273D45C259CC7100008CC8F /* BSBaseThumbnailReader.m in Sources */,
-				2273D454259CC7060008CC8F /* BSFileChunkReader.m in Sources */,
-				2273D458259CC70A0008CC8F /* NSData+SwatchesExt.m in Sources */,
-				2273D460259CC7140008CC8F /* BSGPLThumbnailReader.m in Sources */,
-				2273D442259CB6C20008CC8F /* SRBaseColor.m in Sources */,
-				2273D438259CB1390008CC8F /* PreviewColorTableViewCell.m in Sources */,
-				2273D449259CB8930008CC8F /* SRColorGroup.m in Sources */,
-				2273D428259CAF600008CC8F /* PreviewViewController.m in Sources */,
-				2273D468259CC82B0008CC8F /* SRColorCollectionFileHandler.m in Sources */,
+				22C9925D25FE3812006222C0 /* CPPaletteFileRepresentation.swift in Sources */,
+				22C9925625FE37FC006222C0 /* CPSwatchesPalette.swift in Sources */,
+				22C9925E25FE3816006222C0 /* CPPaletteDocumentError.swift in Sources */,
+				22C9925B25FE3808006222C0 /* CPSwatch.swift in Sources */,
+				22C9926625FE3912006222C0 /* CPPaletteExtensions.swift in Sources */,
+				22C9924225FE3310006222C0 /* SRAppExtensions.swift in Sources */,
+				22C9925A25FE3801006222C0 /* CPSwatchesGroup.swift in Sources */,
+				22C9926225FE389F006222C0 /* CPColor.swift in Sources */,
+				22FC10AF25FCF32C00E9D36A /* PreviewViewController.swift in Sources */,
+				22C9926F25FE5365006222C0 /* SwatchCell.swift in Sources */,
+				22C9925C25FE380E006222C0 /* CPGPLPaletteFileRepresentation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +680,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22488FB325BEC701006ED298 /* SRCoreDataManager.swift in Sources */,
 				22E8E82F259F4A5C00DD2D76 /* CPPaletteColorItemCell.swift in Sources */,
 				22CD828D25BA0B5700701E79 /* CPVColorList.swift in Sources */,
 				229F1EF7257279AE00A821F5 /* FeatureCell.swift in Sources */,
@@ -693,6 +690,7 @@
 				22CB86C72574429B00184A7D /* CPPaletteDocument.swift in Sources */,
 				22F55462259BCB2A0081A5FA /* CPSwatch.swift in Sources */,
 				22DF4F0725A651EF00E48AFF /* CPGPLPaletteFileRepresentation.swift in Sources */,
+				22488FAB25BEC648006ED298 /* SRApp.xcdatamodeld in Sources */,
 				866466DE256F11D20086AC94 /* SRApp.swift in Sources */,
 				223679B925AA079600265619 /* SRAppExtensions.swift in Sources */,
 				228940AB25BB140800E68C68 /* CPMenuCopy.swift in Sources */,
@@ -716,18 +714,18 @@
 			target = 2273D3E3259C8CEF0008CC8F /* SwatchesReaderThumbs */;
 			targetProxy = 2273D3ED259C8CF00008CC8F /* PBXContainerItemProxy */;
 		};
-		2273D42E259CAF600008CC8F /* PBXTargetDependency */ = {
+		22FC10B525FCF32C00E9D36A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2273D421259CAF600008CC8F /* SwatchesReaderQuickLook */;
-			targetProxy = 2273D42D259CAF600008CC8F /* PBXContainerItemProxy */;
+			target = 22FC10AA25FCF32B00E9D36A /* SwatchesReaderQuickLook */;
+			targetProxy = 22FC10B425FCF32C00E9D36A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2273D429259CAF600008CC8F /* MainInterface.storyboard */ = {
+		22FC10B025FCF32C00E9D36A /* MainInterface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2273D42A259CAF600008CC8F /* Base */,
+				22FC10B125FCF32C00E9D36A /* Base */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -748,10 +746,11 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.02;
+				MARKETING_VERSION = 1.03;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatches.SwatchesReaderThumbs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -769,19 +768,19 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.02;
+				MARKETING_VERSION = 1.03;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatches.SwatchesReaderThumbs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		2273D431259CAF600008CC8F /* Debug */ = {
+		22FC10B825FCF32C00E9D36A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q4TNU7NK94;
 				INFOPLIST_FILE = SwatchesReaderQuickLook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -790,19 +789,19 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.02;
+				MARKETING_VERSION = 1.03;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatches.SwatchesReaderQuickLook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		2273D432259CAF600008CC8F /* Release */ = {
+		22FC10B925FCF32C00E9D36A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q4TNU7NK94;
 				INFOPLIST_FILE = SwatchesReaderQuickLook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -811,10 +810,11 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.02;
+				MARKETING_VERSION = 1.03;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatches.SwatchesReaderQuickLook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -938,6 +938,7 @@
 		866466EA256F11D20086AC94 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SwatchesReader/SwatchesReader.entitlements;
@@ -952,7 +953,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.02;
+				MARKETING_VERSION = 1.03;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatches;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -963,6 +964,7 @@
 		866466EB256F11D20086AC94 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SwatchesReader/SwatchesReader.entitlements;
@@ -977,7 +979,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.02;
+				MARKETING_VERSION = 1.03;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fwkit.swatches;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -997,11 +999,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2273D430259CAF600008CC8F /* Build configuration list for PBXNativeTarget "SwatchesReaderQuickLook" */ = {
+		22FC10B725FCF32C00E9D36A /* Build configuration list for PBXNativeTarget "SwatchesReaderQuickLook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2273D431259CAF600008CC8F /* Debug */,
-				2273D432259CAF600008CC8F /* Release */,
+				22FC10B825FCF32C00E9D36A /* Debug */,
+				22FC10B925FCF32C00E9D36A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1025,6 +1027,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		22488FA925BEC648006ED298 /* SRApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				22488FAA25BEC648006ED298 /* FinancialApp.xcdatamodel */,
+			);
+			currentVersion = 22488FAA25BEC648006ED298 /* FinancialApp.xcdatamodel */;
+			path = SRApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 866466D2256F11D20086AC94 /* Project object */;
 }

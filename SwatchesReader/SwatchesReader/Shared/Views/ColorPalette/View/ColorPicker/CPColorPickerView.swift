@@ -41,7 +41,7 @@ struct CPColorPickerView: View {
                     
                     Spacer()
                     ColorPicker(
-                        pickerColor.hex,
+                        pickerColor.hexstr,
                         selection: $pickerColor,
                         supportsOpacity: false
                     ).frame(width: 120, height: 90)

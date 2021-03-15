@@ -1,4 +1,3 @@
-//
 //  CPColor.swift
 //  SwatchesReader
 //
@@ -41,7 +40,7 @@ extension NativeColor {
         return (0, 0, 0, 0)
     }
     
-    var rgbHex: Int {
+    var hexint: Int {
         let clr = self.rgba
         
         let r: CGFloat = min(max(clr.r, 0.0), 1.0)
@@ -53,8 +52,8 @@ extension NativeColor {
             | (((Int)(round(b * 255.0))))
     }
     
-    var hex: String {
-        return String(format:"%06X", self.rgbHex)
+    var hexstr: String {
+        return String(format:"%06X", self.hexint)
     }
 }
 
@@ -69,8 +68,12 @@ extension Color {
         return asNative.rgba
     }
     
-    var hex: String {
-        return asNative.hex
+    var hexstr: String {
+        return asNative.hexstr
+    }
+    
+    var hexint: Int {
+        return asNative.hexint
     }
 }
 
@@ -141,7 +144,7 @@ struct CPColor: Identifiable  {
     private let strm: CGFloat = 100.0
     
     public let rgbWhite: (r: CGFloat, g: CGFloat, b: CGFloat) = (r: 1.0, g: 1.0, b: 1.0)
-    public let rgbBlack: (r: CGFloat, g: CGFloat, b: CGFloat) = (r: 0.0, g: 0.0, b: 0.0)
+    public let rgbBlack: (r: CGFloat, g: CGFloat, b: CGFloat) = (r: 0.0, g: 0.0, b: 1.0)
     
     init(  ) {
         self.rgba = (r: CGFloat(0.0), g: CGFloat(0.0), b: CGFloat(0.0), a:defaultAlpha )
@@ -155,9 +158,14 @@ struct CPColor: Identifiable  {
         self.rgba = (r: rgb.r, g: rgb.g, b: rgb.b, a:defaultAlpha )
     }
     
+    init( hexint: Int ) {
+        let channels = hexint2rgb(hexint: hexint)
+        self.rgba = (r: channels.r, g: channels.g, b: channels.b, a:defaultAlpha)
+    }
+    
     init( white: CGFloat ) {
-        let rgb = white2rgb(w: white)
-        self.rgba = (r: rgb.r, g: rgb.g, b: rgb.b, a:defaultAlpha)
+        let channels = white2rgb(w: white)
+        self.rgba = (r: channels.r, g: channels.g, b: channels.b, a:defaultAlpha)
     }
     
     // wrapper around wrapper - self.raw clamped values
@@ -188,31 +196,34 @@ struct CPColor: Identifiable  {
         }
     }
     
-    var hex: String {
-        let clr = self.rgba
-        
-        let r: CGFloat = min(max(clr.r, 0.0), 1.0)
-        let g: CGFloat = min(max(clr.g, 0.0), 1.0)
-        let b: CGFloat = min(max(clr.b, 0.0), 1.0)
-        
-        let rgb:Int =  (((Int)(round(r * 255.0))) << 16)
-            | (((Int)(round(g * 255.0))) << 8)
-            | (((Int)(round(b * 255.0))))
-        
-        return String(format:"%06X", rgb)
+    var hexint: Int {
+        set {
+            let channels = hexint2rgb(hexint: newValue)
+            self.rgba = (r: channels.r, g: channels.g, b: channels.b, a:rgba.a)
+        }
+        get {
+            let channels = self.rgb
+            return rgb2hexint(rgb:channels)
+        }
+    }
+    
+    var hexstr: String {
+        let channels:Int =  self.hexint
+        return String(format:"%06X", channels)
     }
     
     var rgbstr: String {
-        let fr: String = String(format: "%.0f", self.rgba.r*strn)
-        let fg: String = String(format: "%.0f", self.rgba.g*strn)
-        let fb: String = String(format: "%.0f", self.rgba.b*strn)
-        return "R:\(fr) G:\(fg) B:\(fb)"
+        let channels = self.rgba
+        let r: CGFloat = channels.r*strn
+        let g: CGFloat = channels.g*strn
+        let b: CGFloat = channels.b*strn
+        return String(format:"R:%.0f G:%.0f B:%.0f", r, g, b)
     }
     
     var white: CGFloat {
         set {
-            let rgb = white2rgb(w:newValue)
-            self.rgba = (r: rgb.r, g: rgb.g, b: rgb.b, a:rgba.a)
+            let channels = white2rgb(w:newValue)
+            self.rgba = (r: channels.r, g: channels.g, b: channels.b, a:rgba.a)
         }
         get {
             return rgb2white(rgb:self.rgb)
@@ -220,8 +231,25 @@ struct CPColor: Identifiable  {
     }
     
     var whitestr: String {
-        let w = String(format: "%f", self.white*strm)
-        return "W:\(w.round(3))"
+        let w:String = String(format: "%f", self.white*strm).round(3)
+        return "W:"+w
+    }
+    
+    public func rgb2hexint( rgb:(r: CGFloat, g: CGFloat, b: CGFloat) ) ->Int {
+        let r: CGFloat = min(max(rgb.r, 0.0), 1.0)
+        let g: CGFloat = min(max(rgb.g, 0.0), 1.0)
+        let b: CGFloat = min(max(rgb.b, 0.0), 1.0)
+        
+        return (((Int)(round(r * 255.0))) << 16)
+            | (((Int)(round(g * 255.0))) << 8)
+            | (((Int)(round(b * 255.0))))
+    }
+    
+    public func hexint2rgb(hexint: Int)->(r: CGFloat, g: CGFloat, b: CGFloat){
+        let r: Int = (hexint >> 16) & 0xFF
+        let g: Int = (hexint >> 8) & 0xFF
+        let b: Int = (hexint) & 0xFF
+        return (r: CGFloat(r), g: CGFloat(g), b: CGFloat(b) )
     }
     
     public func rgb2white( rgb:(r: CGFloat, g: CGFloat, b: CGFloat) ) -> CGFloat {
@@ -276,14 +304,14 @@ extension CPColor {
 extension CPColor {
     
     init( hsv:(h: CGFloat, s: CGFloat, v: CGFloat ) ) {
-        let rgb = hsv2rgb(hsv:hsv)
-        self.rgba = (r: rgb.r, g: rgb.g, b: rgb.b, a:defaultAlpha)
+        let channels = hsv2rgb(hsv:hsv)
+        self.rgba = (r: channels.r, g: channels.g, b: channels.b, a:defaultAlpha)
     }
     
     var hsv: (h: CGFloat, s: CGFloat, v: CGFloat ) {
         set {
-            let rgb = hsv2rgb(hsv:newValue)
-            self.rgba = (r: rgb.r, g: rgb.g, b: rgb.b, a:rgba.a)
+            let channels = hsv2rgb(hsv:newValue)
+            self.rgba = (r: channels.r, g: channels.g, b: channels.b, a:rgba.a)
         }
         get {
             return rgb2hsv(rgb:self.rgb)
@@ -292,11 +320,11 @@ extension CPColor {
     }
     
     var hsvstr: String {
-        let hsv = self.hsv
-        let fh: String = String(format: "%.0f", hsv.h*strm)
-        let fs: String = String(format: "%.0f", hsv.s*strm)
-        let fv: String = String(format: "%.0f", hsv.v*strm)
-        return "H:\(fh) S:\(fs) V:\(fv)"
+        let vals = self.hsv
+        let fh: String = String(format: "%.0f", vals.h*strm)
+        let fs: String = String(format: "%.0f", vals.s*strm)
+        let fv: String = String(format: "%.0f", vals.v*strm)
+        return "H:"+fh+" S:"+fs+" V:"+fv
     }
     
     public func hsv2rgb( hsv:(h: CGFloat, s: CGFloat, v: CGFloat) ) -> (r: CGFloat, g: CGFloat, b: CGFloat) {
@@ -309,101 +337,91 @@ extension CPColor {
             return rgbWhite
         }
         
-        var rem_1: CGFloat = 0.0
-        var rem_2: CGFloat = 0.0
-        var rem_3: CGFloat = 0.0
-        var rem_4: CGFloat = 0.0
+        var rem1: CGFloat = 0.0
+        var rem2: CGFloat = 0.0
+        var rem3: CGFloat = 0.0
+        var rem4: CGFloat = 0.0
         
         if(hsv.h != 1.0){
-            rem_4 = (hsv.h*360.0)/60.0
+            rem4 = (hsv.h*360.0)/60.0
         }
         
-        let rem_5: CGFloat = rem_4.rounded(.down)
-        let rem_7: CGFloat = rem_4-rem_5
-        let rem_8: CGFloat = (1.0-hsv.s)*hsv.v
+        let rem5: CGFloat = rem4.rounded(.down)
+        let rem7: CGFloat = rem4-rem5
+        let rem8: CGFloat = (1.0-hsv.s)*hsv.v
         
-        rem_3 = (1.0-hsv.s*rem_7)*hsv.v
-        let rem_6: CGFloat = (1.0-hsv.s*(1.0-rem_7))*hsv.v
+        rem3 = (1.0-hsv.s*rem7)*hsv.v
+        let rem6: CGFloat = (1.0-hsv.s*(1.0-rem7))*hsv.v
         
-        switch (rem_5){
+        switch (rem5){
         case 0.0 :
-            rem_1 = hsv.v
-            rem_2 = rem_6
-            rem_3 = rem_8
-            break
+            rem1 = hsv.v
+            rem2 = rem6
+            rem3 = rem8
         case 1.0 :
-            rem_1 = rem_3
-            rem_2 = hsv.v
-            rem_3 = rem_8
-            break
+            rem1 = rem3
+            rem2 = hsv.v
+            rem3 = rem8
         case 2.0 :
-            rem_1 = rem_8
-            rem_2 = hsv.v
-            rem_3 = rem_6
-            break
+            rem1 = rem8
+            rem2 = hsv.v
+            rem3 = rem6
         case 3.0 :
-            rem_1 = rem_8
-            rem_2 = rem_3
-            rem_3 = hsv.v
-            break
+            rem1 = rem8
+            rem2 = rem3
+            rem3 = hsv.v
         case 4.0 :
-            rem_1 = rem_6
-            rem_2 = rem_8
-            rem_3 = hsv.v
-            break
+            rem1 = rem6
+            rem2 = rem8
+            rem3 = hsv.v
         case 5.0 :
-            rem_1 = hsv.v
-            rem_2 = rem_8
-            // rem_3 = rem_3
-            break
+            rem1 = hsv.v
+            rem2 = rem8
+            // rem3 = rem3
         default :
-            rem_1 = 0.0
-            rem_2 = 0.0
-            rem_3 = 0.0
+            rem1 = 0.0
+            rem2 = 0.0
+            rem3 = 0.0
         }
         
-        return (r: rem_1, g: rem_2, b: rem_3)
+        return (r: rem1, g: rem2, b: rem3)
     }
     
     public func rgb2hsv( rgb:(r: CGFloat, g: CGFloat, b: CGFloat) ) -> (h: CGFloat, s: CGFloat, v: CGFloat) {
         var rem0: CGFloat = 0.0
         
-        let r_hsv: CGFloat = rgb.r
-        let g_hsv: CGFloat = rgb.g
-        let b_hsv: CGFloat = rgb.b
+        let rem3: CGFloat = max( max(rgb.r, rgb.g), rgb.b)
+        let rem4: CGFloat = min( min(rgb.r, rgb.g), rgb.b)
+        var rem1: CGFloat = (rem3-rem4)/rem3
+        let rem2: CGFloat = rem3
         
-        let rem3: CGFloat = max( max(r_hsv, g_hsv), b_hsv)
-        let rem4: CGFloat = min( min(r_hsv, g_hsv), b_hsv)
-        var rem01: CGFloat = (rem3-rem4)/rem3
-        let rem02: CGFloat = rem3
-        
-        if(rem01 == 0.0){
+        if(rem1 == 0.0){
             rem0 = 0.0
         }else{
             let rem5: CGFloat = rem3-rem4
             if(rem5==0.0){
                 rem0 = 0.0
-                rem01 = 0.0
+                rem1 = 0.0
             }else{
-                let red_m: CGFloat = (rem3-r_hsv)/rem5
-                let gre_m: CGFloat = (rem3-g_hsv)/rem5
-                let blu_m: CGFloat = (rem3-b_hsv)/rem5
-                if (r_hsv==rem3&&g_hsv==rem4) {
-                    rem0 = 5.0+blu_m
+                let rm: CGFloat = (rem3-rgb.r)/rem5
+                let gm: CGFloat = (rem3-rgb.g)/rem5
+                let bm: CGFloat = (rem3-rgb.b)/rem5
+                if (rgb.r==rem3&&rgb.g==rem4) {
+                    rem0 = 5.0+bm
                 } else {
-                    if( (r_hsv == rem3) && (g_hsv != rem4) ) {
-                        rem0 = 1.0-gre_m
+                    if( (rgb.r == rem3) && (rgb.g != rem4) ) {
+                        rem0 = 1.0-gm
                     }else{
-                        if(g_hsv==rem3&&b_hsv==rem4){
-                            rem0 = red_m+1.0
+                        if(rgb.g==rem3&&rgb.b==rem4){
+                            rem0 = rm+1.0
                         }else{
-                            if(g_hsv == rem3 && b_hsv != rem4) {
-                                rem0 = 3.0-blu_m
+                            if(rgb.g == rem3 && rgb.b != rem4) {
+                                rem0 = 3.0-bm
                             }else{
-                                if (r_hsv == rem4){
-                                    rem0 = 3.0+gre_m
+                                if (rgb.r == rem4){
+                                    rem0 = 3.0+gm
                                 } else {
-                                    rem0 = 5.0-red_m
+                                    rem0 = 5.0-rm
                                 }
                             }
                         }
@@ -418,7 +436,7 @@ extension CPColor {
         }
         
         
-        return (h: rem0/360.0, s: rem01, v: rem02)
+        return (h: rem0/360.0, s: rem1, v: rem2)
     }
     
     public func hsv2white( hsv:(h: CGFloat, s: CGFloat, v: CGFloat) )-> CGFloat{
@@ -430,60 +448,54 @@ extension CPColor {
             return 1.0
         }
         
-        var rem_1: CGFloat = 0.0
-        var rem_2: CGFloat = 0.0
-        var rem_3: CGFloat = 0.0
-        var rem_4: CGFloat = 0.0
+        var rem1: CGFloat = 0.0
+        var rem2: CGFloat = 0.0
+        var rem3: CGFloat = 0.0
+        var rem4: CGFloat = 0.0
         
         if( hsv.h != 1.0 ){
-            rem_4 = (hsv.h*360.0)/60.0
+            rem4 = (hsv.h*360.0)/60.0
         }
         
-        let rem_5: CGFloat = rem_4.rounded(.down)
-        let rem_7: CGFloat = rem_4-rem_5
-        let rem_8: CGFloat = (1.0-hsv.s)*hsv.v
+        let rem5: CGFloat = rem4.rounded(.down)
+        let rem7: CGFloat = rem4-rem5
+        let rem8: CGFloat = (1.0-hsv.s)*hsv.v
         
-        rem_3 = (1.0-hsv.s*rem_7)*hsv.v
-        let rem_6: CGFloat = (1.0-hsv.s*(1.0-rem_7))*hsv.v
+        rem3 = (1.0-hsv.s*rem7)*hsv.v
+        let rem6: CGFloat = (1.0-hsv.s*(1.0-rem7))*hsv.v
         
-        switch (rem_5){
+        switch (rem5){
         case 0.0 :
-            rem_1 = hsv.v
-            rem_2 = rem_6
-            rem_3 = rem_8
-            break
+            rem1 = hsv.v
+            rem2 = rem6
+            rem3 = rem8
         case 1.0 :
-            rem_1 = rem_3
-            rem_2 = hsv.v
-            rem_3 = rem_8
-            break
+            rem1 = rem3
+            rem2 = hsv.v
+            rem3 = rem8
         case 2.0 :
-            rem_1 = rem_8
-            rem_2 = hsv.v
-            rem_3 = rem_6
-            break
+            rem1 = rem8
+            rem2 = hsv.v
+            rem3 = rem6
         case 3.0 :
-            rem_1 = rem_8
-            rem_2 = rem_3
-            rem_3 = hsv.v
-            break
+            rem1 = rem8
+            rem2 = rem3
+            rem3 = hsv.v
         case 4.0 :
-            rem_1 = rem_6
-            rem_2 = rem_8
-            rem_3 = hsv.v
-            break
+            rem1 = rem6
+            rem2 = rem8
+            rem3 = hsv.v
         case 5.0 :
-            rem_1 = hsv.v
-            rem_2 = rem_8
-            //rem_3 = rem_3
-            break
+            rem1 = hsv.v
+            rem2 = rem8
+            //rem3 = rem3
         default :
-            rem_1 = 0.0
-            rem_2 = 0.0
-            rem_3 = 0.0
+            rem1 = 0.0
+            rem2 = 0.0
+            rem3 = 0.0
         }
         
-        return rgb2white( rgb:(r:rem_1, g:rem_2, b:rem_3) )
+        return rgb2white( rgb:(r:rem1, g:rem2, b:rem3) )
     }
     
     public func white2hsv(w: CGFloat)->(h: CGFloat, s: CGFloat, v: CGFloat){
@@ -497,14 +509,14 @@ extension CPColor {
 extension CPColor {
     
     init( lab:(L: CGFloat, a: CGFloat, b: CGFloat ) ) {
-        let rgb = lab2rgb(lab:lab)
-        self.rgba = (r: rgb.r, g: rgb.g, b: rgb.b, a:defaultAlpha)
+        let channels = lab2rgb(lab:lab)
+        self.rgba = (r: channels.r, g: channels.g, b: channels.b, a:defaultAlpha)
     }
     
     var lab: (L: CGFloat, a: CGFloat, b: CGFloat ) {
         set {
-            let rgb = lab2rgb(lab:newValue)
-            self.rgba = (r: rgb.r, g: rgb.g, b: rgb.b, a:rgba.a)
+            let channels = lab2rgb(lab:newValue)
+            self.rgba = (r: channels.r, g: channels.g, b: channels.b, a:rgba.a)
         }
         get {
             return rgb2lab(rgb:self.rgb)
@@ -512,11 +524,11 @@ extension CPColor {
     }
     
     var labstr: String {
-        let lab = self.lab
-        let fL: String = String(format: "%f", lab.L*strm)
-        let fa: String = String(format: "%f", lab.a*strm)
-        let fb: String = String(format: "%f", lab.b*strm)
-        return "L:\(fL.round(3)) a:\(fa.round(3)) b:\(fb.round(3))"
+        let vals = self.lab
+        let fL: String = String(format: "%f", vals.L*strm).round(3)
+        let fa: String = String(format: "%f", vals.a*strm).round(3)
+        let fb: String = String(format: "%f", vals.b*strm).round(3)
+        return "L:"+fL+" a:"+fa+" b:"+fb
     }
     
     public func rgb2lab( rgb:(r: CGFloat, g: CGFloat, b: CGFloat) ) -> (L: CGFloat, a: CGFloat, b: CGFloat) {
@@ -533,15 +545,22 @@ extension CPColor {
             return (L: 0.0, a: 0.0, b: 0.0)
         }
         
-        let ref_X: CGFloat =  95.047
-        let ref_Y: CGFloat = 100.000
-        let ref_Z: CGFloat = 108.883
+        let refX: CGFloat =  95.047
+        let refY: CGFloat = 100.000
+        let refZ: CGFloat = 108.883
         
         //matrix D65
-        let ma: CGFloat = 0.412424; let mb: CGFloat = 0.212656; let mc: CGFloat = 0.0193324;
-        let md: CGFloat = 0.357579; let me: CGFloat = 0.715158; let mf: CGFloat = 0.119193;
-        let mg: CGFloat = 0.180464; let mh: CGFloat = 0.0721856; let mk: CGFloat =  0.950444;
+        let ma: CGFloat = 0.412424
+        let mb: CGFloat = 0.212656
+        let mc: CGFloat = 0.0193324
         
+        let md: CGFloat = 0.357579
+        let me: CGFloat = 0.715158
+        let mf: CGFloat = 0.119193
+        
+        let mg: CGFloat = 0.180464
+        let mh: CGFloat = 0.0721856
+        let mk: CGFloat =  0.950444
         
         var vR: CGFloat = rgb.r
         var vG: CGFloat = rgb.g
@@ -558,7 +577,7 @@ extension CPColor {
         
         if( vG > 0.04045 )
         {
-            vG = pow(((vG+0.055)/1.055), 2.4);
+            vG = pow(((vG+0.055)/1.055), 2.4)
         }
         else
         {
@@ -567,7 +586,7 @@ extension CPColor {
         
         if( vB > 0.04045 )
         {
-            vB = pow(((vB+0.055)/1.055), 2.4);
+            vB = pow(((vB+0.055)/1.055), 2.4)
         }
         else
         {
@@ -583,13 +602,13 @@ extension CPColor {
         let Y: CGFloat = mb*vR+me*vG+mh*vB
         let Z: CGFloat = mc*vR+mf*vG+mk*vB
         
-        var vX: CGFloat = X/ref_X
-        var vY: CGFloat = Y/ref_Y
-        var vZ: CGFloat = Z/ref_Z
+        var vX: CGFloat = X/refX
+        var vY: CGFloat = Y/refY
+        var vZ: CGFloat = Z/refZ
         
         if( vX > 0.008856 )
         {
-            vX = pow(vX, 1.0/3.0 );
+            vX = pow(vX, 1.0/3.0 )
         }
         else
         {
@@ -607,7 +626,7 @@ extension CPColor {
         
         if( vZ > 0.008856 )
         {
-            vZ = pow(vZ, 1.0/3.0);
+            vZ = pow(vZ, 1.0/3.0)
         }
         else
         {
@@ -638,7 +657,7 @@ extension CPColor {
         
         if( pow(vX, 3.0) > 0.008856 )
         {
-            vX = pow(vX, 3.0);
+            vX = pow(vX, 3.0)
         }
         else
         {
@@ -663,13 +682,13 @@ extension CPColor {
             vZ = (vZ-16.0/116.0)/7.787
         }
         
-        let ref_X: CGFloat =  95.047
-        let ref_Y: CGFloat = 100.000
-        let ref_Z: CGFloat = 108.883
+        let refX: CGFloat =  95.047
+        let refY: CGFloat = 100.000
+        let refZ: CGFloat = 108.883
         
-        vX = (ref_X*vX)/100.0
-        vY = (ref_Y*vY)/100.0
-        vZ = (ref_Z*vZ)/100.0
+        vX = (refX*vX)/100.0
+        vY = (refY*vY)/100.0
+        vZ = (refZ*vZ)/100.0
         
         
         var vR: CGFloat = vX *  3.2406 + vY * -1.5372 + vZ * -0.4986
@@ -731,14 +750,14 @@ extension CPColor {
 extension CPColor {
     
     init( cmyk:(c: CGFloat, m: CGFloat, y: CGFloat, k:CGFloat) ) {
-        let rgb = cmyk2rgb(cmyk:cmyk)
-        self.rgba = (r: rgb.r, g: rgb.g, b: rgb.b, a:defaultAlpha)
+        let channels = cmyk2rgb(cmyk:cmyk)
+        self.rgba = (r: channels.r, g: channels.g, b: channels.b, a:defaultAlpha)
     }
     
     var cmyk: (c: CGFloat, m: CGFloat, y: CGFloat, k: CGFloat) {
         set {
-            let rgb = cmyk2rgb(cmyk:newValue)
-            self.rgba = (r: rgb.r, g: rgb.g, b: rgb.b, a:rgba.a)
+            let channels = cmyk2rgb(cmyk:newValue)
+            self.rgba = (r: channels.r, g: channels.g, b: channels.b, a:rgba.a)
         }
         get {
             return rgb2cmyk(rgb:self.rgb)
@@ -747,13 +766,13 @@ extension CPColor {
     }
     
     var cmykstr: String {
-        let cmyk = self.cmyk
+        let channels = self.cmyk
         
-        let fc: String = String(format: "%.0f", cmyk.c*strm)
-        let fm: String = String(format: "%.0f", cmyk.m*strm)
-        let fy: String = String(format: "%.0f", cmyk.y*strm)
-        let fk: String = String(format: "%.0f", cmyk.k*strm)
-        return "C:\(fc) M:\(fm) Y:\(fy) K:\(fk)"
+        let fc: String = String(format: "%.0f", channels.c*strm)
+        let fm: String = String(format: "%.0f", channels.m*strm)
+        let fy: String = String(format: "%.0f", channels.y*strm)
+        let fk: String = String(format: "%.0f", channels.k*strm)
+        return "C:"+fc+" M:"+fm+" Y:"+fy+" K:"+fk
     }
     
     public func cmyk2rgb( cmyk:(c: CGFloat, m: CGFloat, y: CGFloat, k: CGFloat) ) -> (r: CGFloat, g: CGFloat, b: CGFloat) {
@@ -788,12 +807,12 @@ extension CPColor {
         let g: CGFloat = (1.0-cmyk.k+cmyk.m*w)
         let b: CGFloat = (1.0-cmyk.k+cmyk.y*w)
         
-        return rgb2white( rgb:(r:r, g:g, b:b) );
+        return rgb2white( rgb:(r:r, g:g, b:b) )
     }
     
     public func white2cmyk(w: CGFloat)->(c: CGFloat, m: CGFloat, y: CGFloat, k: CGFloat){
-        let rgb: (CGFloat, CGFloat, CGFloat) = white2rgb(w: w)
-        return rgb2cmyk(rgb: rgb)
+        let channels: (CGFloat, CGFloat, CGFloat) = white2rgb(w: w)
+        return rgb2cmyk(rgb: channels)
     }
     
 }
@@ -802,14 +821,14 @@ extension CPColor {
 extension CPColor {
     
     init( hsl:(h: CGFloat, s: CGFloat, l: CGFloat ) ) {
-        let rgb = hsl2rgb(hsl:hsl)
-        self.rgba = (r: rgb.r, g: rgb.g, b: rgb.b, a:defaultAlpha)
+        let channels = hsl2rgb(hsl:hsl)
+        self.rgba = (r: channels.r, g: channels.g, b: channels.b, a:defaultAlpha)
     }
     
     var hsl: (h: CGFloat, s: CGFloat, l: CGFloat ) {
         set {
-            let rgb = hsl2rgb(hsl:newValue)
-            self.rgba = (r: rgb.r, g: rgb.g, b: rgb.b, a:rgba.a)
+            let channels = hsl2rgb(hsl:newValue)
+            self.rgba = (r: channels.r, g: channels.g, b: channels.b, a:rgba.a)
         }
         get {
             return rgb2hsl(rgb:self.rgb)
@@ -817,11 +836,11 @@ extension CPColor {
     }
     
     var hslstr: String {
-        let hsl = self.hsl
-        let fh: String = String(format: "%.0f", hsl.h*strm)
-        let fs: String = String(format: "%.0f", hsl.s*strm)
-        let fl: String = String(format: "%.0f", hsl.l*strm)
-        return "H:\(fh) S:\(fs) L:\(fl)"
+        let vals = self.hsl
+        let fh: String = String(format: "%.0f", vals.h*strm)
+        let fs: String = String(format: "%.0f", vals.s*strm)
+        let fl: String = String(format: "%.0f", vals.l*strm)
+        return "H:"+fh+" S:"+fs+" L:"+fl
     }
     
     public func hue2rgb( v1: CGFloat, v2: CGFloat, v3: CGFloat ) -> CGFloat {
@@ -885,7 +904,7 @@ extension CPColor {
         L = (colorMax+colorMin)/2.0
         
         if(colorMax==colorMin){
-            S = 0.0;
+            S = 0.0
         }else if (L<=0.5){
             S = delta/L/2.0
         }else{

@@ -39,7 +39,7 @@ public struct CPSwatch: Identifiable, Codable, Equatable {
     }
     
     public func hexString() -> String  {
-        return color.hex
+        return color.hexstr
     }
     
     public func baseColorName() -> String {
@@ -84,14 +84,23 @@ extension CPSwatch: CustomStringConvertible {
 }
 
 struct RGBColor : Codable {
-    var red : CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
+    var red : CGFloat = 0.0
+    var green: CGFloat = 0.0
+    var blue: CGFloat = 0.0
+    var alpha: CGFloat = 0.0
     
     var uiColor : UIColor {
-        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+        return UIColor(red: red,
+                       green: green,
+                       blue: blue,
+                       alpha: alpha)
     }
     
     init(uiColor : UIColor) {
-        uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        uiColor.getRed(&red,
+                       green: &green,
+                       blue: &blue,
+                       alpha: &alpha)
     }
 }
 

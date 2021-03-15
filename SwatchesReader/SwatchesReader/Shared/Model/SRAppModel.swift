@@ -67,11 +67,11 @@ struct Palette: Identifiable {
     let author: String
     
     func updateProgress() -> Void {
-
+        // not implemented yet
     }
     
     func markCompleted() -> Void {
-
+        // not implemented yet
     }
     
 }

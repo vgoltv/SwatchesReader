@@ -194,11 +194,11 @@ struct CPPaletteContentView: View {
     }
     
     private func bodyAppears() {
-        
+        // Not implemented yet
     }
     
     private func bodyDisappeared() {
-        
+        // Not implemented yet
     }
     
 }

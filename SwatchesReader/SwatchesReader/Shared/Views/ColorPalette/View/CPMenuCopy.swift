@@ -12,6 +12,9 @@ import SwiftUI
 struct CPMenuCopy: View {
     var color: Color
     
+    public init( color: Color ) {
+        self.color = color
+    }
     
     var body: some View {
         let cp: CPColor = CPColor(color: color )
@@ -22,7 +25,7 @@ struct CPMenuCopy: View {
             Image(systemName: "eyedropper.full")
         }
         
-        Button(cp.hex, action: { UIPasteboard.general.string = cp.hex } )
+        Button(cp.hexstr, action: { UIPasteboard.general.string = cp.hexstr } )
         Button(cp.rgbstr, action: { UIPasteboard.general.string = cp.rgbstr } )
         Button(cp.cmykstr, action: { UIPasteboard.general.string = cp.cmykstr } )
         Button(cp.hslstr, action: { UIPasteboard.general.string = cp.hslstr } )

@@ -39,7 +39,7 @@ public struct CPSwatchesGroup: Identifiable {
         return gSwatches.count
     }
     
-    public func getSwatchAt(index:Int) -> (Bool, CPSwatch) {
+    public func getSwatchAt(index:Int) -> (success:Bool, swatch:CPSwatch) {
         if (gSwatches.count > index) {
             return (true, gSwatches[index])
         }

@@ -23,7 +23,7 @@ struct CPPaletteColorItemCell: View {
         if ( self.viewOption == 0 ) {
             
             Button(action: {
-                if( selectedCellIndexPath.row == indexPath.row && selectedCellIndexPath.row == indexPath.row  ){
+                if( ( selectedCellIndexPath.section == indexPath.section ) && ( selectedCellIndexPath.row == indexPath.row )  ){
                     self.selectedCellIndexPath = IndexPath(row: -1, section: -1)
                     self.pickerColor = Color.gray
                 }else{
@@ -35,7 +35,7 @@ struct CPPaletteColorItemCell: View {
                 ZStack {
                     
                     
-                    if( selectedCellIndexPath.row == indexPath.row && selectedCellIndexPath.row == indexPath.row  ){
+                    if( ( selectedCellIndexPath.section == indexPath.section ) && ( selectedCellIndexPath.row == indexPath.row )  ){
                         Color(UIColor.secondarySystemBackground).ignoresSafeArea()
                     }else{
                         Color(UIColor.systemBackground).ignoresSafeArea()
@@ -63,7 +63,7 @@ struct CPPaletteColorItemCell: View {
                         
                         
                         
-                        if( selectedCellIndexPath.row == indexPath.row && selectedCellIndexPath.row == indexPath.row  ){
+                        if( ( selectedCellIndexPath.section == indexPath.section ) && ( selectedCellIndexPath.row == indexPath.row )  ){
                             RoundedRectangle(cornerRadius: 3)
                                 .addBorder(Color(UIColor.link), width: 5, cornerRadius: 3)
                                 .foregroundColor(swatch.baseColor())
@@ -81,10 +81,13 @@ struct CPPaletteColorItemCell: View {
             }).contextMenu {
                 CPMenuCopy( color:swatch.baseColor() )
             }
+            
+            Divider().background(Color(UIColor.separator)).frame(height: 0.5)
+            
         }else{
             
             Button(action: {
-                if( selectedCellIndexPath.row == indexPath.row && selectedCellIndexPath.row == indexPath.row  ){
+                if( ( selectedCellIndexPath.section == indexPath.section ) && ( selectedCellIndexPath.row == indexPath.row )  ){
                     self.selectedCellIndexPath = IndexPath(row: -1, section: -1)
                     self.pickerColor = Color.gray
                 }else{
@@ -92,7 +95,7 @@ struct CPPaletteColorItemCell: View {
                     self.pickerColor = swatch.baseColor()
                 }
             }, label: {
-                if( selectedCellIndexPath.row == indexPath.row && selectedCellIndexPath.row == indexPath.row  ){
+                if( ( selectedCellIndexPath.section == indexPath.section ) && ( selectedCellIndexPath.row == indexPath.row )  ){
                     RoundedRectangle(cornerRadius: 3)
                         .addBorder(Color(UIColor.link), width: 5, cornerRadius: 3)
                         .foregroundColor(swatch.baseColor())
@@ -109,9 +112,6 @@ struct CPPaletteColorItemCell: View {
             }
         }
         
-        if ( self.viewOption == 0 ) {
-            Divider().background(Color(UIColor.separator)).frame(height: 0.5)
-        }
     }
     
     

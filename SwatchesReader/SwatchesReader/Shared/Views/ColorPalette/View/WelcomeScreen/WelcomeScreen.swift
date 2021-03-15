@@ -29,9 +29,7 @@ struct WelcomeScreen: View {
             Spacer()
             
             VStack(spacing: 24) {
-                FeatureCell(image: "app", title: "App icon", subtitle: "Changed app's icon, now background color of it is white", color: .green)
-                FeatureCell(image: "eyedropper.full", title: "Picker", subtitle: "Added system's ColorPicker", color: .blue)
-                FeatureCell(image: "doc.on.clipboard.fill", title: "Color Models", subtitle: "Added ability to copy color values in a different models - as a CMYK, HSV, HSL, Lab or White", color: .gray)
+                FeatureCell(image: "eye", title: "QuickLook", subtitle: "Improved QuickLook extension", color: .green)
                 
             }
             .padding(.leading)
